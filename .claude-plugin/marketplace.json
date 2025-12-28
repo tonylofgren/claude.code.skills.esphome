@@ -1,0 +1,21 @@
+{
+  "name": "esphome-code-assistant",
+  "owner": {
+    "name": "Tony Löfgren",
+    "email": "tony@lofgren.se"
+  },
+  "metadata": {
+    "description": "Complete ESPHome code assistant for Claude Code",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "esphome-code-assistant",
+      "description": "Create, configure, and troubleshoot ESP32/ESP8266 devices. 17 templates, 200+ sensor platforms, device conversions (Shelly, Sonoff, Tuya), and 600+ example prompts.",
+      "source": "./",
+      "skills": [
+        "./"
+      ]
+    }
+  ]
+}
