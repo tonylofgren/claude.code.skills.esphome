@@ -19,7 +19,9 @@ Complete ESPHome code assistant for Claude Code. Create, configure, and troubles
    /plugin install esphome-code-assistant
    ```
 
-3. **Create your first device**
+3. **Restart Claude Code** (exit and reopen)
+
+4. **Create your first device**
    ```
    You: Create an ESP32 with temperature sensor
    ```

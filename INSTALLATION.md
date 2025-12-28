@@ -28,7 +28,9 @@ Install directly in Claude Code using the plugin system:
 /plugin install esphome-code-assistant
 ```
 
-**Done!** Start using the skill immediately.
+**3. Restart Claude Code** (exit and reopen)
+
+**Done!** Start using the skill.
 
 ---
 
