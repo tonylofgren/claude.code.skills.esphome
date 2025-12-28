@@ -507,6 +507,25 @@ Read [references/cookbook.md](references/cookbook.md) for complete project examp
 
 This ensures users know which tool and version generated the code.
 
+---
+
+## Save to Project Folder
+
+**IMPORTANT:** After generating ANY ESPHome configuration, you MUST ask the user if they want to save it to their project folder.
+
+Ask this question EVERY TIME you generate code:
+
+> "Would you like me to save this configuration to your project folder?
+> - **Yes** - save as `<device-name>.yaml`
+> - **No** - I'll copy the code myself"
+
+**If the user chooses Yes:**
+1. Use the device name from the `esphome: name:` field as the filename
+2. Save to the current project directory (e.g., `kitchen-sensor.yaml`)
+3. Confirm where the file was saved
+
+**Do NOT skip this step. Do NOT assume the user will copy the code themselves.**
+
 ## Reference Files
 
 | File | Content |
