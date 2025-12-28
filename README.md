@@ -1,3 +1,5 @@
+![Supercharge ESPHome with Claude Code Skills](images/supercharge2.png)
+
 # ESPHome Code Assistant Skill
 
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/tonylofgren/claude.code.skills.esphome/releases)
