@@ -9,14 +9,15 @@ Complete ESPHome code assistant for Claude Code. Create, configure, and troubles
 
 ## Quick Start
 
-1. **Install the skill**
-   ```bash
-   git clone https://github.com/tonylofgren/claude.code.skills.esphome.git
-   cp -r claude.code.skills.esphome ~/.claude/skills/esphome-code-assistant
+1. **Add the marketplace**
    ```
-   *(Windows: see [INSTALLATION.md](INSTALLATION.md))*
+   /plugin marketplace add tonylofgren/claude.code.skills.esphome
+   ```
 
-2. **Restart Claude Code**
+2. **Install the skill**
+   ```
+   /plugin install esphome-code-assistant
+   ```
 
 3. **Create your first device**
    ```

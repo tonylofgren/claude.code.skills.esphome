@@ -8,124 +8,83 @@ Complete guide to installing the ESPHome Code Assistant skill for Claude Code.
    - Download from [claude.ai/code](https://claude.ai/code)
    - Verify with `claude --version`
 
-2. **Git** (for cloning the repository)
-
-3. **Basic ESPHome knowledge** (recommended)
+2. **Basic ESPHome knowledge** (recommended)
    - Understand YAML syntax
    - Know what ESP32/ESP8266 boards are
 
 ---
 
-## Installation by Platform
+## Installation (Recommended)
 
-### macOS
+Install directly in Claude Code using the plugin system:
 
-```bash
-# Clone the repository
-git clone https://github.com/tonylofgren/claude.code.skills.esphome.git
-cd claude.code.skills.esphome
-
-# Create skills folder and copy
-mkdir -p ~/.claude/skills
-cp -r . ~/.claude/skills/esphome-code-assistant
-
-# Restart Claude Code and verify
+**1. Add the marketplace:**
+```
+/plugin marketplace add tonylofgren/claude.code.skills.esphome
 ```
 
-### Linux / WSL
-
-```bash
-# Clone the repository
-git clone https://github.com/tonylofgren/claude.code.skills.esphome.git
-cd claude.code.skills.esphome
-
-# Create skills folder and copy
-mkdir -p ~/.claude/skills
-cp -r . ~/.claude/skills/esphome-code-assistant
-
-# Restart Claude Code and verify
+**2. Install the skill:**
+```
+/plugin install esphome-code-assistant
 ```
 
-### Windows (PowerShell)
+**Done!** Start using the skill immediately.
 
-```powershell
-# Clone the repository
-git clone https://github.com/tonylofgren/claude.code.skills.esphome.git
-cd claude.code.skills.esphome
+---
 
-# Create skills folder and copy
-New-Item -ItemType Directory -Path "$env:USERPROFILE\.claude\skills" -Force
-Copy-Item -Recurse . "$env:USERPROFILE\.claude\skills\esphome-code-assistant"
+## Updating
 
-# Restart Claude Code and verify
+To update to the latest version:
+
 ```
-
-### Windows (Command Prompt)
-
-```cmd
-:: Clone the repository
-git clone https://github.com/tonylofgren/claude.code.skills.esphome.git
-cd claude.code.skills.esphome
-
-:: Create skills folder and copy
-mkdir "%USERPROFILE%\.claude\skills"
-xcopy . "%USERPROFILE%\.claude\skills\esphome-code-assistant" /E /I /H
-
-:: Restart Claude Code and verify
+/plugin marketplace update tonylofgren-claude.code.skills.esphome
 ```
 
 ---
 
-## Alternative: Project Installation
+## Uninstalling
 
-Install for a specific project only (team members get the skill automatically).
+```
+/plugin uninstall esphome-code-assistant
+```
 
-```bash
-# In your project root
-mkdir -p .claude/skills
-git clone https://github.com/tonylofgren/claude.code.skills.esphome.git .claude/skills/esphome-code-assistant
+To also remove the marketplace:
+```
+/plugin marketplace remove tonylofgren-claude.code.skills.esphome
 ```
 
 ---
 
-## Alternative: Symlink (For Development)
+## Alternative: Manual Installation
 
-Keep the skill synced with the repo for easy updates.
+If you prefer manual installation or need to modify the skill locally:
 
-**macOS / Linux / WSL:**
+### All Platforms
+
 ```bash
-ln -s /full/path/to/claude.code.skills.esphome ~/.claude/skills/esphome-code-assistant
+git clone https://github.com/tonylofgren/claude.code.skills.esphome.git
 ```
 
-**Windows (Admin PowerShell):**
-```powershell
-New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.claude\skills\esphome-code-assistant" -Target "C:\full\path\to\claude.code.skills.esphome"
-```
+Then copy to your skills folder:
+
+| Platform | Path |
+|----------|------|
+| macOS/Linux | `~/.claude/skills/esphome-code-assistant` |
+| Windows | `%USERPROFILE%\.claude\skills\esphome-code-assistant` |
+
+Restart Claude Code after installation.
 
 ---
 
 ## Verification
 
-After installation, test the skill:
-
-### Quick Test
-
-Say to Claude:
+Test the skill by saying:
 
 ```
 Create a simple ESP32 temperature sensor config
 ```
 
-**Expected:** A complete ESPHome YAML configuration with core settings, WiFi, API, OTA, and a temperature sensor.
-
-### Verify All Features
-
-| Test Command | Expected Result |
-|--------------|-----------------|
-| "Create ESP32 with DHT22" | DHT sensor YAML config |
-| "Convert Shelly 1PM to ESPHome" | Shelly-specific config with GPIO mappings |
-| "Add SSD1306 OLED display" | Display component with example pages |
-| "Troubleshoot WiFi connection" | Diagnostic steps and config checks |
+**Expected:** A complete ESPHome YAML configuration.
 
 ---
 
@@ -133,51 +92,22 @@ Create a simple ESP32 temperature sensor config
 
 ### Secrets File
 
-The skill generates configs using `!secret` references. Create your secrets file:
-
-**Location:** Same directory as your ESPHome configs
+The skill generates configs using `!secret` references. Create your secrets file in your ESPHome config directory:
 
 ```yaml
 # secrets.yaml
 wifi_ssid: "YourWiFiName"
 wifi_password: "YourWiFiPassword"
 wifi_ap_password: "FallbackAPPassword"
-api_encryption_key: "your-32-byte-base64-key"  # Generate with: openssl rand -base64 32
+api_encryption_key: "your-32-byte-base64-key"
 ota_password: "your-ota-password"
 ```
 
 ### Generate API Key
 
 ```bash
-# Generate a random 32-byte base64 key
 openssl rand -base64 32
 ```
-
-Or use Python:
-
-```python
-import secrets, base64
-print(base64.b64encode(secrets.token_bytes(32)).decode())
-```
-
----
-
-## Updating
-
-### Pull Latest Changes
-
-If installed via clone:
-
-```bash
-cd ~/.claude/skills/esphome-code-assistant
-git pull
-```
-
-If installed via copy, re-copy from updated source.
-
-### Restart Claude Code
-
-After updating, restart Claude Code to load changes.
 
 ---
 
@@ -185,125 +115,22 @@ After updating, restart Claude Code to load changes.
 
 ### Skill Not Triggering
 
-**Symptom:** Claude doesn't recognize ESPHome-related requests
-
-**Solutions:**
-1. Verify installation path is correct:
-   - Personal: `~/.claude/skills/esphome-code-assistant/SKILL.md`
-   - Project: `.claude/skills/esphome-code-assistant/SKILL.md`
+1. Verify the skill is installed: `/plugin list`
 2. Restart Claude Code
-3. Check folder contains `SKILL.md` file
-
-### Skill Folder Structure
-
-The skill must have this structure:
-
-```
-esphome-code-assistant/
-├── SKILL.md              ← Required (main skill file)
-├── references/           ← Supporting documentation
-│   ├── sensors.md
-│   ├── displays.md
-│   └── ...
-└── assets/templates/     ← Ready-to-use templates
-    ├── base-esp32.yaml
-    └── ...
-```
+3. Try reinstalling the skill
 
 ### Generated Config Has Errors
 
-**Symptom:** ESPHome compilation fails
-
-**Solutions:**
 1. Check ESPHome version compatibility
 2. Verify pin assignments for your specific board
 3. Ask Claude: "Fix this ESPHome error: [paste error]"
-
-### Clear Plugin Cache
-
-If skills aren't updating:
-
-```bash
-# macOS/Linux
-rm -rf ~/.claude/plugins/cache
-
-# Windows
-rmdir /s /q %USERPROFILE%\.claude\plugins\cache
-```
-
----
-
-## Uninstalling
-
-Remove the skill folder:
-
-```bash
-# macOS/Linux
-rm -rf ~/.claude/skills/esphome-code-assistant
-
-# Windows
-rmdir /s /q %USERPROFILE%\.claude\skills\esphome-code-assistant
-```
-
----
-
-## Skill Locations Reference
-
-| Location | Path | Scope |
-|----------|------|-------|
-| Personal | `~/.claude/skills/` | All your projects |
-| Project | `.claude/skills/` | This repo only |
-
-If multiple skills have the same name, project skills take precedence over personal skills.
-
----
-
-## Directory Structure
-
-```
-esphome-code-assistant/
-├── SKILL.md                    # Main skill instructions
-├── INSTALLATION.md             # This file
-├── USAGE-GUIDE.md              # Detailed usage examples
-├── README.md                   # Overview and quick start
-├── references/
-│   ├── sensors.md              # 200+ sensor platforms
-│   ├── binary-sensors.md       # PIR, touch, NFC, buttons
-│   ├── lights.md               # LED strips, effects
-│   ├── displays.md             # OLED, TFT, E-Paper
-│   ├── climate.md              # Thermostat, PID, AC
-│   ├── covers-fans.md          # Blinds, garage doors
-│   ├── motors.md               # Stepper, servo
-│   ├── remote-rf-ir.md         # IR/RF protocols
-│   ├── communication.md        # I2C, SPI, UART, CAN
-│   ├── automations.md          # Triggers, actions
-│   ├── home-assistant.md       # HA integration
-│   ├── device-guides.md        # Shelly, Sonoff, Tuya
-│   ├── troubleshooting.md      # Common issues
-│   ├── external-components.md  # Community components
-│   ├── solar-energy.md         # MPPT, inverters, BMS
-│   ├── popular-devices.md      # AirGradient, VINDRIKTNING
-│   ├── power-management.md     # Deep sleep, battery
-│   ├── bluetooth.md            # BLE tracker, proxy
-│   ├── buttons-inputs.md       # Number, Select, Text
-│   ├── outputs.md              # GPIO, PWM, DAC
-│   ├── cookbook.md             # Complete projects
-│   └── arduino-conversion.md   # Arduino to ESPHome
-└── assets/templates/
-    ├── base-esp32.yaml
-    ├── base-esp8266.yaml
-    ├── shelly-1pm.yaml
-    ├── sonoff-basic.yaml
-    ├── voice-assistant.yaml
-    └── (12 more templates...)
-```
 
 ---
 
 ## Getting Help
 
 - **Usage examples:** See [USAGE-GUIDE.md](USAGE-GUIDE.md)
-- **Quick reference:** See [README.md](README.md)
+- **600+ prompts:** See [PROMPT-IDEAS.md](PROMPT-IDEAS.md)
 - **GitHub Issues:** [Report bugs or request features](https://github.com/tonylofgren/claude.code.skills.esphome/issues)
 
 ---
@@ -312,4 +139,4 @@ esphome-code-assistant/
 
 | Version | Changes |
 |---------|---------|
-| v1.0.0 | Initial release - Complete ESPHome skill with 18 triggers, 22 reference docs, 17 templates |
+| v1.0.0 | Initial release - 17 templates, 22 reference docs, 600+ example prompts |
