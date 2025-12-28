@@ -58,7 +58,7 @@ See [INSTALLATION.md](INSTALLATION.md) for complete instructions including Windo
 
 ## Prompt Ideas
 
-Need inspiration? Check out [PROMPT-IDEAS.md](PROMPT-IDEAS.md) for 100+ example prompts covering:
+Need inspiration? Check out [PROMPT-IDEAS.md](PROMPT-IDEAS.md) for 600+ example prompts covering:
 - Smart home basics, climate, lighting
 - Voice assistants, displays, dashboards
 - Garage, outdoor, energy monitoring

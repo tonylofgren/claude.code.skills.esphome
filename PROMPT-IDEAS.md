@@ -1,6 +1,6 @@
 # ESPHome Prompt Ideas
 
-500+ creative prompts to inspire your ESPHome projects. Copy, modify, and combine!
+600+ creative prompts to inspire your ESPHome projects. Copy, modify, and combine!
 
 ---
 
