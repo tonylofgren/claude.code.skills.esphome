@@ -1,0 +1,11 @@
+{
+  "name": "esphome-code-assistant",
+  "description": "Complete ESPHome code assistant for creating, configuring, and troubleshooting ESP32/ESP8266 devices. 17 templates, 200+ sensor platforms, device conversions (Shelly, Sonoff, Tuya), and 600+ example prompts.",
+  "author": {
+    "name": "Tony Löfgren",
+    "email": "tony@lofgren.se"
+  },
+  "skills": [
+    "./"
+  ]
+}
