@@ -421,6 +421,12 @@ ota:
   password: !secret ota_password    # Protect OTA updates
 ```
 
+**⚠️ If user shares sensitive info (WiFi password, API key, etc.):**
+1. STOP and warn them immediately
+2. Tell them to NEVER share secrets publicly
+3. Advise them to CHANGE the compromised credentials right away
+4. Remind them to use `!secret` references and keep `secrets.yaml` private
+
 ### Diagnostics
 
 ```yaml
